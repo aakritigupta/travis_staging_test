@@ -6,7 +6,7 @@ install: true
 
 script:
   - cat ~/build.sh
-
+  - echo "bleh"
 deploy:
   - provider: script
     edge:
