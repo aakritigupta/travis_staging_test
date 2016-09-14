@@ -11,7 +11,7 @@ deploy:
   - provider: script
     edge:
       source: travis-ci/dpl
-    script: echo "foo"
+    script: echo "foos"
   - provider: script
     edge:
       source: travis-ci/dpl
