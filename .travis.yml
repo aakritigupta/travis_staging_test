@@ -1,26 +1,21 @@
-language: ruby
-
+dist: trusty
 sudo: false
-
-install: true
-
-script:
-  - cat ~/build.sh
-
-deploy:
-  - provider: script
-    edge:
-      source: travis-ci/dpl
-    script: echo "foo"
-  - provider: script
-    edge:
-      source: travis-ci/dpl
-    script: echo "bar"
 
 notifications:
   email: false
-  slack:
-    rooms:
-      - secure: "lJvygEEwbvbTua6vhOQCgg/voA7iH9sgm6yj9pC9fnYBf++8DWbyyM3sUB3ZIBaeqUlwiEXmn5HjgQlzB1+JTHPtOJtd05m72kOOSEIcXqcLK3Of51E4fEzjrAZ4x/nJQeIIrUzpnlVrSpgFkCP1qNWq1AV+miSjoFFbTn2v7hA="
-    template:
-       - "Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch} by %{author} %{result} in %{duration} (elapsed time: %{elapsed_time}) subject: %{commit_subject} message: %{commit_message}"
+
+jobs:
+  include:
+    - script: false
+      dist: trusty
+      rvm: 2.3
+      stage: one
+    - script: true
+      dist: trusty
+      rvm: 2.4
+      stage: one
+    - script: true
+      dist: trusty
+      stage: two
+  allow_failures:
+    - rvm: 2.3
